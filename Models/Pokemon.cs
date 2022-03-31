@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace PokedexApi.Models
@@ -1185,6 +1186,11 @@ namespace PokedexApi.Models
         /// An enumerable of the Pokémon that exist within this Pokémon species.
         /// </summary>
         public IEnumerable<PokemonSpeciesVariety> Varieties { get; set; }
+
+        public static implicit operator PokemonSpecies(ActionResult<PokemonSpecies> v)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
     /// <summary>

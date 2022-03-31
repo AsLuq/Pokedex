@@ -28,8 +28,8 @@ namespace Pokedex
         public void ConfigureServices(IServiceCollection services)
         {
             // Registring the interface for dependency injection
-            services.AddSingleton<IPokemonPublicApi, PokemonPublicApi>();
-            services.AddSingleton<IFunnyTranslationPublicApi, FunnyTranslationPublicApi>();
+            services.AddTransient<IPokemonPublicApi, PokemonPublicApi>();
+            services.AddTransient<IFunnyTranslationPublicApi, FunnyTranslationPublicApi>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

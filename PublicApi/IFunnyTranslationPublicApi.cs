@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
-using PokedexApi.Models;
+using Microsoft.AspNetCore.Mvc;
+using PokedexApi.Dtos;
 
 namespace PokedexApi.PublicApi
 {
@@ -8,7 +9,7 @@ namespace PokedexApi.PublicApi
         /// <summary>
         /// The endpoint of the api to call
         /// </summary>
-        static string Endpoint { get; }
+        static string ApiUrl { get; }
 
         /// <summary>
         /// Returns pokemon's basic information with the Funny
@@ -16,6 +17,6 @@ namespace PokedexApi.PublicApi
         /// </summary>
         /// <param name="pokemonName">Name of the pokemon</param>
         /// <returns></returns>
-        Task<PokemonSpecies> GetPokemonTranslationAsync(string pokemonName);
+        Task<PokemonTranslatedDto> GetPokemonTranslationAsync(string pokemonName);
     }
 }

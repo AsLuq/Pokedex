@@ -8,14 +8,37 @@ namespace PokedexApi.Utility
     {
         public static PokemonDto AsDto(this PokemonSpecies pokemon)
         {
-            PokemonSpeciesFlavorTexts objPokemonSpeciesFlavorTexts = pokemon.FlavorTextEntries.FirstOrDefault();
+            PokemonSpeciesFlavorTexts pokemonSpeciesFlavorTexts = pokemon.FlavorTextEntries
+            .FirstOrDefault();
 
             return new PokemonDto
             {
                 Name = pokemon.Name,
-                Description = (objPokemonSpeciesFlavorTexts != null) ? objPokemonSpeciesFlavorTexts.FlavorText : string.Empty,
+                Description = (pokemonSpeciesFlavorTexts != null) ? pokemonSpeciesFlavorTexts.FlavorText : string.Empty,
                 Habitat = pokemon.Habitat.Name,
                 IsLegendary = pokemon.IsLegendary
+            };
+        }
+
+        public static PokemonTranslatedDto AsDto(this PokemonSpecies pokemon, string translatedDescription)
+        {
+            PokemonSpeciesFlavorTexts pokemonSpeciesFlavorTexts = pokemon.FlavorTextEntries
+            .FirstOrDefault();
+
+            return new PokemonTranslatedDto
+            {
+                Name = pokemon.Name,
+                Description = translatedDescription,
+                Habitat = pokemon.Habitat.Name,
+                IsLegendary = pokemon.IsLegendary
+            };
+        }
+
+        public static PokemonTranslatedDto AsDto(this PokemonSpecies pokemon, TranslationApiErrorResponse translationApiErrorResponse)
+        {
+            return new PokemonTranslatedDto
+            {
+                Error = translationApiErrorResponse.Error
             };
         }
     }
