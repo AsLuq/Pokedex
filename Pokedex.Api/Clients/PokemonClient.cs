@@ -9,7 +9,8 @@ namespace Pokedex.Api.Clients
     {
         // The Uri of the api to call
         internal static string ApiUrl { get; } = "https://pokeapi.co/api/v2";
-        // 
+
+        // The endpoint to get the information needed
         private string PokemonSpecesEndPoint { get; } = "/pokemon-species/";
 
         public async Task<PokemonSpecies> GetPokemonAsync(string pokemonName)
@@ -27,7 +28,7 @@ namespace Pokedex.Api.Clients
             PokemonSpecies pokemonSpecies = null;
             HttpResponseMessage response = await client.GetAsync(requestUri: uri);
 
-            // if response is ok convert the content to object
+            // if response is ok convert the content to Dto object
             if (response.IsSuccessStatusCode)
                 pokemonSpecies = JsonConvert.DeserializeObject<PokemonSpecies>(await response.Content.ReadAsStringAsync());
 

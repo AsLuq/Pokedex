@@ -26,40 +26,18 @@ namespace Pokedex.Api.Models
         public string Translation { get; set; }
     }
 
-    public class Error
-    {
-        /// <summary>
-        /// Status code for error from server
-        /// </summary>
-        public int? Code { get; set; }
-
-        /// <summary>
-        /// Error Message
-        /// </summary>
-        public string Message { get; set; }
-    }
-
+    /// <summary>
+    /// Translation api response model
+    /// </summary>
     public class TranslationApiResponse
     {
         public Succes Succes { get; set; }
         public Contents Contents { get; set; }
-        public Error Error { get; set; }
 
         public TranslationApiResponse()
         {
             Succes = new Succes();
             Contents = new Contents();
-            Error = new Error();
-        }
-    }
-
-    public class TranslationApiErrorResponse
-    {
-        public Error Error { get; set; }
-
-        public TranslationApiErrorResponse()
-        {
-            Error = new Error();
         }
     }
 

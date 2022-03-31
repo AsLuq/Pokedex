@@ -12,8 +12,10 @@ namespace Pokedex.Api.Clients
     {
         // The Uri of the api to call
         internal static string ApiUrl { get; } = "https://api.funtranslations.com";
+
         // The endpoint for the yoda translation
         private string YodaTranslationEndPoint { get; } = "/translate/yoda.json";
+
         // The endpoint for the Shakespear translation
         private string ShakespearTranslationEndPoint { get; } = "/translate/shakespeare.json";
 
@@ -26,8 +28,8 @@ namespace Pokedex.Api.Clients
 
         // GET /
         /// <summary>
-        /// Returns pokemon's basic information with the Funny
-        /// translation it's description
+        /// Returns pokemon basic information with the Funny
+        /// translation as it's description
         /// </summary>
         /// <param name="pokemonName">Name of the pokemon</param>
         /// <returns></returns>
@@ -38,7 +40,7 @@ namespace Pokedex.Api.Clients
             // In case i want to use specific TLS protocol
             // ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072; //TLS 1.2
 
-            // In case we want to add somethis in the header
+            // In case we want to add something in the header
             // example and authorization key
             // client.DefaultRequestHeaders.Add("key", "value");
             PokemonSpecies pokemonSpecies = await _pokemonClient.GetPokemonAsync(pokemonName);
@@ -60,17 +62,20 @@ namespace Pokedex.Api.Clients
             else
                 uri = ApiUrl + ShakespearTranslationEndPoint;
 
-            // addming the text to translate to the querystring
+            // adding the text to translate to the querystring
+            // removing \n and \f because it prevents from getting the text translated (the translated test is the same as original)
             uri += "?text=" + pokemonSpeciesFlavorTexts.FlavorText.Replace("\n", " ").Replace("\f", " ");
 
             HttpResponseMessage response = await client.GetAsync(requestUri: uri);
 
             TranslationApiResponse translationApiResponse;
 
-            // if response is ok convert the content to object
+            // if response is ok convert the content to Dto object
             if (response.IsSuccessStatusCode)
             {
                 translationApiResponse = JsonConvert.DeserializeObject<TranslationApiResponse>(await response.Content.ReadAsStringAsync());
+
+                // exchanging the original description with the translation
                 return pokemonSpecies.AsDto(translationApiResponse.Contents.Translated);
             }
             else

@@ -1,6 +1,9 @@
 ﻿using System;
 namespace Pokedex.Api.Dtos
 {
+    /// <summary>
+    /// Pokemon data transfor object class
+    /// </summary>
     public class PokemonDto
     {
         public string Name { get; set; }

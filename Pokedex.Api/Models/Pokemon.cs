@@ -608,7 +608,7 @@ namespace Pokedex.Api.Models
     }
 
     /// <summary>
-    /// Class for storing a Pokemon's type data in a previous generation.
+    /// Class for storing a pokemon type data in a previous generation.
     /// </summary>
     public class PokemonPastTypes : PastGenerationData<IEnumerable<PokemonType>>
     {

@@ -19,15 +19,16 @@ namespace Pokedex.Api.Controllers
             _funnyTranslationPublicApi = funnyTranslationPublicApi;
             _pokemonPublicApi = pokemonPublicApi;
         }
-        // GET api/v1/pokemon/translation/{pokemonName}
+
+        // GET api/v1/pokemon/{pokemonName}
         /// <summary>
-        /// Basic pokemon's Information
+        /// Gets the basic pokemon Information
         /// </summary>
-        /// <param name="pokemonName">Pokemon's Name</param>
+        /// <param name="pokemonName">pokemon Name</param>
         /// <returns></returns>
         [HttpGet]
         [Route("{pokemonName}")]
-        public async Task<ActionResult<PokemonDto>> Pokemon(string pokemonName)
+        public async Task<ActionResult<PokemonDto>> GetPokemon(string pokemonName)
         {
             if (string.IsNullOrEmpty(pokemonName))
                 return BadRequest();
@@ -45,11 +46,11 @@ namespace Pokedex.Api.Controllers
         /// <summary>
         /// Translated Pokemon Description based on habitat
         /// </summary>
-        /// <param name="pokemonName">Pokemon's Name</param>
+        /// <param name="pokemonName">pokemon Name</param>
         /// <returns></returns>
         [HttpGet]
         [Route("translation/{pokemonName}")]
-        public async Task<ActionResult<PokemonDto>> PokemonTranslation(string pokemonName)
+        public async Task<ActionResult<PokemonDto>> GetPokemonTranslation(string pokemonName)
         {
             if (string.IsNullOrEmpty(pokemonName))
                 return BadRequest();
