@@ -49,17 +49,17 @@ namespace PokedexApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("translation/{pokemonName}")]
-        public async Task<ActionResult<PokemonTranslatedDto>> PokemonTranslation(string pokemonName)
+        public async Task<ActionResult<PokemonDto>> PokemonTranslation(string pokemonName)
         {
             if (string.IsNullOrEmpty(pokemonName))
                 return BadRequest();
 
-            PokemonTranslatedDto pokemonTranslatedDto = await _funnyTranslationPublicApi.GetPokemonTranslationAsync(pokemonName);
+            PokemonDto pokemonDto = await _funnyTranslationPublicApi.GetPokemonTranslationAsync(pokemonName);
 
-            if (pokemonTranslatedDto == null)
+            if (pokemonDto == null)
                 return NotFound();
 
-            return pokemonTranslatedDto;
+            return pokemonDto;
         }
     }
 }

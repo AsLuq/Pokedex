@@ -33,7 +33,7 @@ namespace PokedexApi.PublicApi
         /// </summary>
         /// <param name="pokemonName">Name of the pokemon</param>
         /// <returns></returns>
-        public async Task<PokemonTranslatedDto> GetPokemonTranslationAsync(string pokemonName)
+        public async Task<PokemonDto> GetPokemonTranslationAsync(string pokemonName)
         {
             using HttpClient client = new HttpClient();
             
@@ -68,7 +68,6 @@ namespace PokedexApi.PublicApi
             HttpResponseMessage response = await client.GetAsync(requestUri: uri);
 
             TranslationApiResponse translationApiResponse;
-            TranslationApiErrorResponse translationApiErrorResponse;
 
             // if response is ok convert the content to object
             if (response.IsSuccessStatusCode)
@@ -77,10 +76,8 @@ namespace PokedexApi.PublicApi
                 return pokemonSpecies.AsDto(translationApiResponse.Contents.Translated);
             }
             else
-            {
-                translationApiErrorResponse = JsonConvert.DeserializeObject<TranslationApiErrorResponse>(await response.Content.ReadAsStringAsync());
-                return pokemonSpecies.AsDto(translationApiErrorResponse);
-            }
+                return pokemonSpecies.AsDto();
+
 
         }
 

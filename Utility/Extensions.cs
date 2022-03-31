@@ -20,25 +20,14 @@ namespace PokedexApi.Utility
             };
         }
 
-        public static PokemonTranslatedDto AsDto(this PokemonSpecies pokemon, string translatedDescription)
+        public static PokemonDto AsDto(this PokemonSpecies pokemon, string translatedDescription)
         {
-            PokemonSpeciesFlavorTexts pokemonSpeciesFlavorTexts = pokemon.FlavorTextEntries
-            .FirstOrDefault();
-
-            return new PokemonTranslatedDto
+            return new PokemonDto
             {
                 Name = pokemon.Name,
                 Description = translatedDescription,
                 Habitat = pokemon.Habitat.Name,
                 IsLegendary = pokemon.IsLegendary
-            };
-        }
-
-        public static PokemonTranslatedDto AsDto(this PokemonSpecies pokemon, TranslationApiErrorResponse translationApiErrorResponse)
-        {
-            return new PokemonTranslatedDto
-            {
-                Error = translationApiErrorResponse.Error
             };
         }
     }

@@ -17,6 +17,6 @@ namespace PokedexApi.PublicApi
         /// </summary>
         /// <param name="pokemonName">Name of the pokemon</param>
         /// <returns></returns>
-        Task<PokemonTranslatedDto> GetPokemonTranslationAsync(string pokemonName);
+        Task<PokemonDto> GetPokemonTranslationAsync(string pokemonName);
     }
 }
