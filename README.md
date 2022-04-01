@@ -1,7 +1,7 @@
 
 # Pokedex API
 
-A .NET custom implementation of [Pokemon API](https://pokeapi.co/) and Funny [Translations API](https://funtranslations.com/api/)
+A .NET custom implementation of [Pokemon API](https://pokeapi.co/) and [FunnyTranslations API](https://funtranslations.com/api/)
 
 
 
